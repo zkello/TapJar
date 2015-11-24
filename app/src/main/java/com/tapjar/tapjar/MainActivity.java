@@ -13,6 +13,7 @@ import android.nfc.tech.Ndef;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class MainActivity extends Activity {
 
     public static final String MIME_TEXT_PLAIN = "text/plain";
     public static final String TAG = "NfcDemo";
+    public static final String EXTRA_MESSAGE = "ACCOUNT_NUMBER";
 
     private TextView mTextView;
     private NfcAdapter mNfcAdapter;
@@ -37,7 +39,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_main);
+        setContentView(R.layout.activity_main);
 
         mTextView = (TextView) findViewById(R.id.textView_explanation);
 
@@ -156,6 +158,12 @@ public class MainActivity extends Activity {
         adapter.disableForegroundDispatch(activity);
     }
 
+    public void startBeamActivity(View view){
+        Intent intent = new Intent(view.getContext(), BeamActivity.class);
+        String message = "Account Number";
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
 
     private class NdefReaderTask extends AsyncTask<Tag, Void, String> {
 
@@ -219,5 +227,6 @@ public class MainActivity extends Activity {
                 mTextView.setText("Read content: " + result);
             }
         }
+
     }
 }

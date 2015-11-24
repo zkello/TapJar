@@ -9,12 +9,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.tapjar.tapjar.MainActivity"
-    tools:showIn="@layout/activity_main">
-
+    tools:context="com.tapjar.tapjar.BeamActivity"
+    tools:showIn="@layout/activity_beam">
     <TextView
-        android:id="@+id/textView_explanation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/explanation" />
+        android:text="New Text"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal" />
+
 </RelativeLayout>

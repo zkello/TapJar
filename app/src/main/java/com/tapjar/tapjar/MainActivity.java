@@ -23,5 +23,12 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+    public void startTipActivity(View view)
+    {
+        Intent intent = new Intent(view.getContext(), TipActivity.class);
+        String message = "Bananas!!!";
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
 
 }

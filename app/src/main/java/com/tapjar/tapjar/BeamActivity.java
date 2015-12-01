@@ -40,11 +40,10 @@ public class BeamActivity extends Activity implements CreateNdefMessageCallback 
         // Get the message from the intent
         Intent intent = getIntent();
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        String text = (message + "\n\n" +
-                "Beam Time: " + System.currentTimeMillis());
+        //String text = message;
         NdefMessage msg = new NdefMessage(
                 new NdefRecord[] { createMime(
-                        "application/vnd.com.example.android.beam", text.getBytes())
+                        "application/vnd.com.example.android.beam", message.getBytes())
                         /**
                          * The Android Application Record (AAR) is commented out. When a device
                          * receives a push with an AAR in it, the application specified in the AAR

@@ -9,14 +9,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.tapjar.tapjar.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context="com.tapjar.tapjar.TipActivity"
+    tools:showIn="@layout/activity_tip">
 
-
-
-    <Button
+    <TextView
+        android:id="@+id/textView_explanation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_send"
-        android:onClick="startBeamActivity" />
+        android:text="@string/empty" />
 </RelativeLayout>

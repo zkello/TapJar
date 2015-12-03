@@ -13,17 +13,24 @@ public class JSONDecoder
     public static TokenWrapper  getTokenFromResponse(String jsonInfo, Card card)
             throws JSONException {
         JSONObject jsonWrapper = new JSONObject(jsonInfo);
-        return new TokenWrapper((String) jsonWrapper.get("id"), card);
+        return new TokenWrapper(jsonWrapper.getString("id"), card);
     }
 
-    public static ChargeWrapper getChargeFromResponse(String jsonInfo)
-    {
-        return null;
+    public static ChargeWrapper getChargeFromResponse(
+            String jsonInfo, TokenWrapper token, AccountWrapper acct) throws JSONException {
+
+        JSONObject jsonWrapper = new JSONObject(jsonInfo);
+
+        return new ChargeWrapper(jsonWrapper.getString("id"),
+                Integer.parseInt(jsonWrapper.getString("amount")),
+                token,
+                acct);
+
     }
 
     public static AccountWrapper getAcctFromResponse(String jsonInfo, String employeeEmail)
             throws JSONException {
         JSONObject jsonWrapper = new JSONObject(jsonInfo);
-        return new AccountWrapper((String) jsonWrapper.get("id"), employeeEmail);
+        return new AccountWrapper(jsonWrapper.getString("id"), employeeEmail);
     }
 }

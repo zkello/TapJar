@@ -32,6 +32,13 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
+    public void startSignInActivity(View view){
+        Intent intent = new Intent(view.getContext(), BeamActivity.class);
+        message = "Account Number";
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+
     public void startTipActivity(View view)
     {
         Intent intent = new Intent(view.getContext(), TipActivity.class);

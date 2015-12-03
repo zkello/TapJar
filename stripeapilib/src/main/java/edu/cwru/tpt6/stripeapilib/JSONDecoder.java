@@ -21,8 +21,9 @@ public class JSONDecoder
         return null;
     }
 
-    public static AccountWrapper getAcctFromResponse(String jsonInfo, String email)
-    {
-        return null;
+    public static AccountWrapper getAcctFromResponse(String jsonInfo, String employeeEmail)
+            throws JSONException {
+        JSONObject jsonWrapper = new JSONObject(jsonInfo);
+        return new AccountWrapper((String) jsonWrapper.get("id"), employeeEmail);
     }
 }

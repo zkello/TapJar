@@ -26,28 +26,11 @@ public class StripeHelper {
     private static final String credentialKey = "sk_test_JeEPsy1W0H1stdpnBE2Ezx6c";
 
     //Create a stripeHelper from the key you are given
-    public StripeHelper(String StripeKey) {
-        if (StripeKey == null || StripeKey.length() == 0) {
-            throw new IllegalArgumentException("Invalid Key: You must use a valid " +
-                    "key to create a token.  For more info, see " +
-                    "https://stripe.com/docs/stripe.js.");
-        }
+    public StripeHelper() {
+        setAuthenticator();
     }
 
-    public void createChargeWithID(
-            TokenWrapper token,
-            String employeeIdentifier,
-            int amnt,
-            ChargeCallback responseHandler) {
-        //TODO to implement
-    }
-
-    public void openAcctWithID()
-    {
-
-    }
-
-    public static void setAuthenticator()
+    private static void setAuthenticator()
     {
         Authenticator.setDefault(new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -58,7 +41,7 @@ public class StripeHelper {
         });
     }
 
-    public static void accessCharges(HttpCallBack httpCallBack) {
+    public void accessCharges(HttpCallBack httpCallBack) {
         new AsyncHTTPGetRequest(httpCallBack, "https://api.stripe.com/v1/charges").execute();
     }
 
@@ -105,6 +88,24 @@ public class StripeHelper {
         }
     }
 
+    public void createChargeWithID(TokenWrapper token, String employeeIdentifier, int amnt,
+            HttpCallBack responseHandler) {
+        //TODO
+
+    }
+
+    public void openAcctWithEmail(HttpCallBack responseHandler, String employeeEmail)
+    {
+        List<PostParameter> params = new LinkedList<PostParameter>();
+
+        params.add(new PostParameter("country", "US"));
+        params.add(new PostParameter("managed", "false" ));
+        params.add(new PostParameter("email", employeeEmail));
+
+        new AsyncHTTPPostRequest(
+                responseHandler, "https://api.stripe.com/v1/accounts", params).execute();
+    }
+
     public static void createToken(HttpCallBack httpCallBack) {
         List<PostParameter> params = new LinkedList<PostParameter>();
 
@@ -113,7 +114,8 @@ public class StripeHelper {
         params.add(new PostParameter("card[exp_year]", "2016"));
         params.add(new PostParameter("card[cvc]", "123"));
 
-        new AsyncHTTPPostRequest(httpCallBack, "https://api.stripe.com/v1/tokens", params).execute();
+        new AsyncHTTPPostRequest(
+                httpCallBack, "https://api.stripe.com/v1/tokens", params).execute();
     }
 
     private static class AsyncHTTPPostRequest extends AsyncTask<Void, Void, HTTPSResponseWrapper>

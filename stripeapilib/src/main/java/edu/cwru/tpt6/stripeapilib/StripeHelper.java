@@ -1,21 +1,20 @@
 package edu.cwru.tpt6.stripeapilib;
 
 import android.os.AsyncTask;
-import android.util.Log;
-
-import com.stripe.android.model.Card;
-import com.stripe.android.model.Token;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.concurrent.CountDownLatch;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -27,40 +26,11 @@ public class StripeHelper {
     private static final String credentialKey = "sk_test_JeEPsy1W0H1stdpnBE2Ezx6c";
 
     //Create a stripeHelper from the key you are given
-    public StripeHelper(String StripeKey) {
-        if (StripeKey == null || StripeKey.length() == 0) {
-            throw new IllegalArgumentException("Invalid Key: You must use a valid " +
-                    "key to create a token.  For more info, see " +
-                    "https://stripe.com/docs/stripe.js.");
-        }
+    public StripeHelper() {
+        setAuthenticator();
     }
 
-    public void createChargeWithID(
-            Token token, String employeeIdentifier, int amnt, ChargeCallback responseHandler) {
-        //TODO to implement
-    }
-
-    //method to create a token with a given card object
-    public static void createTokenWithCard(Card card, HttpCallBack responseHandler) throws InterruptedException {
-        if(!card.validateCard())
-        {
-            throw new RuntimeException("Invalid card"); //TODO make more specific handling
-        }
-
-        Log.d("TapJar", "Creating token");
-        final CountDownLatch signal = new CountDownLatch(1);
-       // AsyncHTTPGetRequest = new AsyncHTTPGetRequest();
-
-        signal.await();
-        Log.d("TapJar", "Token created");
-    }
-
-    public void openAcctWithID()
-    {
-
-    }
-
-    public static void setAuthenticator()
+    private static void setAuthenticator()
     {
         Authenticator.setDefault(new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -71,7 +41,7 @@ public class StripeHelper {
         });
     }
 
-    public static void accessCharges(HttpCallBack httpCallBack) {
+    public void accessCharges(HttpCallBack httpCallBack) {
         new AsyncHTTPGetRequest(httpCallBack, "https://api.stripe.com/v1/charges").execute();
     }
 
@@ -96,8 +66,6 @@ public class StripeHelper {
 
                 // optional default is GET
                 connector.setRequestMethod("GET");
-
-
                 StringBuffer response = new StringBuffer();
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -107,7 +75,6 @@ public class StripeHelper {
                 while ((inputLine = in.readLine()) != null) {
                     response.append(inputLine);
                 }
-
                 in.close();
                 return new HTTPSResponseWrapper(response.toString(), null);
             } catch (Exception e) {
@@ -121,19 +88,47 @@ public class StripeHelper {
         }
     }
 
+    public void createChargeWithID(TokenWrapper token, String employeeIdentifier, int amnt,
+            HttpCallBack responseHandler) {
+        //TODO
+
+    }
+
+    public void openAcctWithEmail(HttpCallBack responseHandler, String employeeEmail)
+    {
+        List<PostParameter> params = new LinkedList<PostParameter>();
+
+        params.add(new PostParameter("country", "US"));
+        params.add(new PostParameter("managed", "false" ));
+        params.add(new PostParameter("email", employeeEmail));
+
+        new AsyncHTTPPostRequest(
+                responseHandler, "https://api.stripe.com/v1/accounts", params).execute();
+    }
+
     public static void createToken(HttpCallBack httpCallBack) {
-        new AsyncHTTPPostRequest(httpCallBack, "https://api.stripe.com/v1/tokens").execute();
+        List<PostParameter> params = new LinkedList<PostParameter>();
+
+        params.add(new PostParameter("card[number]", "4242424242424242"));
+        params.add(new PostParameter("card[exp_month]", "12" ));
+        params.add(new PostParameter("card[exp_year]", "2016"));
+        params.add(new PostParameter("card[cvc]", "123"));
+
+        new AsyncHTTPPostRequest(
+                httpCallBack, "https://api.stripe.com/v1/tokens", params).execute();
     }
 
     private static class AsyncHTTPPostRequest extends AsyncTask<Void, Void, HTTPSResponseWrapper>
     {
         public final HttpCallBack handler;
         public final String url;
+        public final List<PostParameter> parameterList;
 
-        public AsyncHTTPPostRequest(HttpCallBack handler, String url)
+        public AsyncHTTPPostRequest(HttpCallBack handler, String url, List<PostParameter> parameterList)
         {
             this.url = url;
             this.handler = handler;
+            this.parameterList = new ArrayList(parameterList);
         }
 
         @Override
@@ -143,38 +138,19 @@ public class StripeHelper {
 
                 HttpsURLConnection connector = (HttpsURLConnection) obj.openConnection();
 
-                // optional default is Post
                 connector.setRequestMethod("POST");
 
+                //3 seconds before timeout
+                connector.setReadTimeout(3000);
+                connector.setConnectTimeout(3000);
 
-                connector.setReadTimeout(600000);
-                connector.setConnectTimeout(60000); //6 seconds of timeout
-
-                connector.setRequestMethod("POST");
                 connector.setDoInput(true);
                 connector.setDoOutput(true);
-
-                StringBuffer result = new StringBuffer();
-                result.append(URLEncoder.encode("card[number]", "UTF-8"));
-                result.append("=");
-                result.append(URLEncoder.encode("4242424242424242", "UTF-8"));
-                result.append("&");
-                result.append(URLEncoder.encode("card[exp_month]", "UTF-8"));
-                result.append("=");
-                result.append(URLEncoder.encode("12", "UTF-8"));
-                result.append("&");
-                result.append(URLEncoder.encode("card[exp_year]", "UTF-8"));
-                result.append("=");
-                result.append(URLEncoder.encode("2016", "UTF-8"));
-                result.append("&");
-                result.append(URLEncoder.encode("card[cvc]", "UTF-8"));
-                result.append("=");
-                result.append(URLEncoder.encode("123", "UTF-8"));
 
                 OutputStream os = connector.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(
                         new OutputStreamWriter(os, "UTF-8"));
-                writer.write(result.toString());
+                writer.write(createEncodedParams(parameterList));
                 writer.flush();
                 writer.close();
                 os.close();
@@ -190,12 +166,13 @@ public class StripeHelper {
                     }
                 }
                 else {
-                    response = response.replace(0, response.length(), "" + responseCode);
+                    throw new Exception("Received invalid responseCode: "+ responseCode);
                 }
 
                 return new HTTPSResponseWrapper(response.toString(), null);
+
             } catch (Exception e) {
-                return new HTTPSResponseWrapper(null,e);
+                return new HTTPSResponseWrapper(null, e);
             }
         }
 
@@ -226,8 +203,44 @@ public class StripeHelper {
                     new RuntimeException("Did not receive https response or an error"));
     }
 
-    private interface JsonCallBack
-    {
+    private static String createEncodedParams(List<PostParameter> params)
+            throws UnsupportedEncodingException {
+        StringBuffer result = new StringBuffer();
+        boolean first = true;
 
+        for (PostParameter keyValuePair : params) {
+            if (first) {
+                first = false;
+            }
+            else {
+                result.append("&");
+            }
+                result.append(URLEncoder.encode(keyValuePair.getKey(), "UTF-8"));
+                result.append("=");
+                result.append(URLEncoder.encode(keyValuePair.getValue(), "UTF-8"));
+        }
+
+        return result.toString();
+    }
+
+
+    private static class PostParameter
+    {
+        private final String key;
+        private final String value;
+
+        public PostParameter(String key, String value)
+        {
+            this.key = key;
+            this.value = value;
+        }
+
+        public String getKey() {
+            return key;
+        }
+
+        public String getValue() {
+            return value;
+        }
     }
 }

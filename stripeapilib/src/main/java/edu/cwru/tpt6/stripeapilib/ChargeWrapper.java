@@ -1,22 +1,21 @@
 package edu.cwru.tpt6.stripeapilib;
 
 import com.stripe.android.model.Card;
-import com.stripe.android.model.Token;
 
 /**
  * Created by timlax on 12/1/15.
  */
-public class ChargeInfo
+public class ChargeWrapper
 {
     public final String id; //Id of charge
     public final int amount; //amount charged
-    public final Token token; //Token used to create this charge
+    public final TokenWrapper token; //Token used to create this charge
     public final Card card; //card
 
     /**
      * Should not be invoked by code outside of library. Used by responses to create tokens.
      **/
-    public ChargeInfo(String id, int amount, Token token)
+    public ChargeWrapper(String id, int amount, TokenWrapper token)
     {
         this.id = id;
         this.amount = amount;
@@ -32,7 +31,7 @@ public class ChargeInfo
         return amount;
     }
 
-    public Token getToken() {
+    public TokenWrapper getToken() {
         return token;
     }
 

@@ -8,6 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import edu.cwru.tpt6.stripeapilib.AccountWrapper;
+import edu.cwru.tpt6.stripeapilib.HttpCallBack;
+import edu.cwru.tpt6.stripeapilib.JSONDecoder;
+import edu.cwru.tpt6.stripeapilib.StripeHelper;
+
 public class SignInActivity extends AppCompatActivity {
 
     @Override
@@ -17,9 +24,26 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void getAccountNumber(View view){
+        StripeHelper stripeInst = new StripeHelper();
 
-        String accountNumber = "test account number";
-        saveAccountNumber(accountNumber);
+        stripeInst.openAcctWithEmail(new HttpCallBack() {
+            AccountWrapper accountWrapper;
+
+            @Override
+            public void processResponse(String response) {
+                try {
+                    accountWrapper = JSONDecoder.getAcctFromResponse(response, "fadlfkj@travitz.net");
+                    saveAccountNumber(accountWrapper.getId());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void processFailure(Exception e) {
+
+            }
+        },"fadlfkj@travitz.net");
+
     }
 
     public void saveAccountNumber(String accountNumber){

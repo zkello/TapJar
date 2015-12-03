@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
@@ -27,13 +29,14 @@ public class MainActivity extends Activity {
 
     public void startBeamActivity(View view){
         Intent intent = new Intent(view.getContext(), BeamActivity.class);
-        message = "Account Number";
-        intent.putExtra(EXTRA_MESSAGE, message);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String accountNumber = sharedPref.getString(getString(R.string.account_number), "Default Value");
+        intent.putExtra(EXTRA_MESSAGE, accountNumber);
         startActivity(intent);
     }
 
     public void startSignInActivity(View view){
-        Intent intent = new Intent(view.getContext(), BeamActivity.class);
+        Intent intent = new Intent(view.getContext(), SignInActivity.class);
         message = "Account Number";
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);

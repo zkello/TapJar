@@ -4,7 +4,7 @@
     <string name="empty"></string>
     <string name="account_number"></string>
     <string name="button_send">Beam</string>
-    <string name="button_sign_in">Beam</string>
+    <string name="button_sign_in">Employee Sign In</string>
     <string name="button_tip">Tip</string>
     <string name="button_payment">Pay</string>
     <string name="title_activity_beam">BeamActivity</string>

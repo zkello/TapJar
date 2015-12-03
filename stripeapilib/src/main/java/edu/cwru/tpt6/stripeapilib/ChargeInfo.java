@@ -1,7 +1,7 @@
 package edu.cwru.tpt6.stripeapilib;
 
-import com.stripe.model.Card;
-import com.stripe.model.Token;
+import com.stripe.android.model.Card;
+import com.stripe.android.model.Token;
 
 /**
  * Created by timlax on 12/1/15.

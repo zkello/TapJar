@@ -5,6 +5,6 @@ package edu.cwru.tpt6.stripeapilib;
  */
 public interface HttpCallBack
 {
-    void processResponse(String response);
+    void processResponse(String response);//TODO maybechange response to a specific object
     void processFailure(Exception e);
 }

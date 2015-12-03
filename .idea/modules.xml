@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TapJar.iml" filepath="$PROJECT_DIR$/TapJar.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stripeapilib/stripeapilib.iml" filepath="$PROJECT_DIR$/stripeapilib/stripeapilib.iml" />
     </modules>
   </component>
 </project>

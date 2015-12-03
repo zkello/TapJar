@@ -9,6 +9,14 @@
     android:weightSum="1">
 
     <Button
+        android:id="@+id/startSignInActivityButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_sign_in"
+        android:onClick="startSignInActivity"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
         android:id="@+id/startBeamActivityButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -30,6 +30,7 @@ public class TipActivity extends Activity {
 
     public static final String MIME_TEXT_PLAIN = "text/plain";
     public static final String TAG = "NfcDemo";
+    public static final String EXTRA_MESSAGE = "ACCOUNT_NUMBER";
 
     private TextView mTextView;
     private NfcAdapter mNfcAdapter;
@@ -217,6 +218,10 @@ public class TipActivity extends Activity {
             if (result != null) {
                 mTextView.setText("Read content: " + result);
                 //Launch payment here
+                String message = result;
+                Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, message);
+                startActivity(intent);
             }
         }
 

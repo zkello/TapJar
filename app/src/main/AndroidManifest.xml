@@ -3,7 +3,7 @@
     package="com.tapjar.tapjar">
 
     <uses-permission android:name="android.permission.NFC" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -47,8 +47,8 @@
         <activity
             android:name=".PaymentActivity"
             android:label="@string/title_activity_payment"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".SignInActivity"></activity>
     </application>
 
 </manifest>

@@ -43,9 +43,10 @@ public class StripeHelper {
         });
     }
 
-    public void createChargeWithID(TokenWrapper token, AccountWrapper employeeAcct, int amnt,
+    public void createChargeWithID(TokenWrapper token, String employeeAcct, int amnt,
             HttpCallBack responseHandler)
     {
+        if(employeeAcct == null) throw new NullPointerException();
         List<PostParameter> params = new LinkedList<>();
 
         params.add(new PostParameter("amount", "" + amnt));
@@ -53,7 +54,7 @@ public class StripeHelper {
         params.add(new PostParameter("source", token.getId()));
 
         new AsyncHTTPPostRequest(
-                responseHandler, "https://api.stripe.com/v1/charges", params, employeeAcct.getId()
+                responseHandler, "https://api.stripe.com/v1/charges", params, employeeAcct
         ).execute();
     }
 

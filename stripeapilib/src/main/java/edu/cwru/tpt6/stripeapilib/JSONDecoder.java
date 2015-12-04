@@ -17,7 +17,7 @@ public class JSONDecoder
     }
 
     public static ChargeWrapper getChargeFromResponse(
-            String jsonInfo, TokenWrapper token, AccountWrapper acct) throws JSONException {
+            String jsonInfo, TokenWrapper token, String acct) throws JSONException {
 
         JSONObject jsonWrapper = new JSONObject(jsonInfo);
 

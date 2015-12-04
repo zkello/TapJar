@@ -11,12 +11,12 @@ public class ChargeWrapper
     private final int amount; //amount charged
     private final TokenWrapper token; //Token used to create this charge
     private final Card card; //card
-    private final AccountWrapper acct; //Employee we are tipping
+    private final String acct; //Employee we are tipping
 
     /**
      * Should not be invoked by code outside of library. Used by responses to create tokens.
      **/
-    public ChargeWrapper(String id, int amount, TokenWrapper token, AccountWrapper acct)
+    public ChargeWrapper(String id, int amount, TokenWrapper token, String acct)
     {
         if(id == null || token == null || acct == null) {
             throw new NullPointerException("A value passed to ChargeWrapper constructor was null");

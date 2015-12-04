@@ -38,7 +38,6 @@ public class StripeHelper {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(credentialKey,
                         "".toCharArray());
-
             }
         });
     }
@@ -52,9 +51,9 @@ public class StripeHelper {
         params.add(new PostParameter("amount", "" + amnt));
         params.add(new PostParameter("currency", "usd"));
         params.add(new PostParameter("source", token.getId()));
-
+        params.add(new PostParameter("destination", employeeAcct));
         new AsyncHTTPPostRequest(
-                responseHandler, "https://api.stripe.com/v1/charges", params, employeeAcct
+                responseHandler, "https://api.stripe.com/v1/charges", params
         ).execute();
     }
 

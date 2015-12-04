@@ -77,14 +77,14 @@ public class PaymentActivity extends AppCompatActivity {
                                     }
                                     else
                                     {
-                                        Log.d("TapJar", "Charge")
+                                        Log.d("TapJar", "Charge");
                                     }
                                 }
 
 
                                 @Override
                                 public void processFailure(Exception e) {
-                                    Log.d("TapJar", "Charge Post failed");
+                                    Log.d("TapJar", "Charge Post failed\n" + e.getMessage());
                                 }
                             });
                         }

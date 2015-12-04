@@ -170,7 +170,7 @@ public class PaymentActivity extends AppCompatActivity {
         {
             int tipVal = getTipFromFields();
             if(tipVal >= MIN_TIP && tipVal <= MAX_TIP) {
-                stripeInst.createChargeWithID(token, acctNum, 125, new HttpCallBack() {
+                stripeInst.createChargeWithID(token, acctNum, tipVal, new HttpCallBack() {
                     @Override
                     public void processResponse(String response) {
                         handleChargeSuccessResponse(response);

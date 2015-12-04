@@ -65,7 +65,7 @@ public class PaymentActivity extends AppCompatActivity {
 
                 if (token != null)
                 {
-                    stripeInst.createChargeWithID(token, acctNum, 100, new HttpCallBack() {
+                    stripeInst.createChargeWithID(token, acctNum, 125, new HttpCallBack() {
                         @Override
                         public void processResponse(String response) {
                             charge = null;

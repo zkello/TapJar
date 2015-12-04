@@ -30,7 +30,6 @@ public class SignInActivity extends AppCompatActivity {
         StripeHelper stripeInst = new StripeHelper();
         EditText editText = (EditText) findViewById(R.id.editText);
         final String email = editText.getText().toString();
-        Toast.makeText(this, email, Toast.LENGTH_LONG).show();
         stripeInst.openAcctWithEmail(new HttpCallBack() {
             AccountWrapper accountWrapper;
 

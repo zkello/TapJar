@@ -7,7 +7,7 @@
     <string name="button_sign_in">Employee Sign In</string>
     <string name="button_tip">Tip</string>
     <string name="button_payment">Pay</string>
-    <string name="title_activity_beam">BeamActivity</string>
+    <string name="title_activity_beam">Beam Account Number</string>
     <string name="title_activity_tip">TipActivity</string>
     <string name="title_activity_payment">PaymentActivity</string>
 

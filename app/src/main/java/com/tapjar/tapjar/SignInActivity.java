@@ -6,6 +6,9 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -25,14 +28,16 @@ public class SignInActivity extends AppCompatActivity {
 
     public void getAccountNumber(View view){
         StripeHelper stripeInst = new StripeHelper();
-
+        EditText editText = (EditText) findViewById(R.id.editText);
+        final String email = editText.getText().toString();
+        Toast.makeText(this, email, Toast.LENGTH_LONG).show();
         stripeInst.openAcctWithEmail(new HttpCallBack() {
             AccountWrapper accountWrapper;
 
             @Override
             public void processResponse(String response) {
                 try {
-                    accountWrapper = JSONDecoder.getAcctFromResponse(response, "example@travitz.net");
+                    accountWrapper = JSONDecoder.getAcctFromResponse(response, email);
                     saveAccountNumber(accountWrapper.getId());
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -42,7 +47,7 @@ public class SignInActivity extends AppCompatActivity {
             public void processFailure(Exception e) {
 
             }
-        },"fadlfkj@travitz.net");
+        }, email);
 
     }
 

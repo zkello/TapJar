@@ -50,7 +50,7 @@ public class PaymentActivity extends AppCompatActivity {
         }
     }
 
-    public void tipIt() {
+    public void tipIt(View view) {
         stripeInst = new StripeHelper();
         card = new Card("4242424242424242", 12, 2016, "123");
         stripeInst.createTokenWithCard(card, new HttpCallBack() {

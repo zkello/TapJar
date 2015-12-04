@@ -23,19 +23,5 @@
         android:text="@string/button_send"
         android:onClick="startBeamActivity"
         android:layout_gravity="center_horizontal" />
-    <Button
-        android:id="@+id/startTipActivityButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_tip"
-        android:onClick="startTipActivity"
-        android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:id="@+id/startPaymentActivityButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_payment"
-        android:onClick="startPaymentActivity"
-        android:layout_gravity="center_horizontal" />
 </LinearLayout>

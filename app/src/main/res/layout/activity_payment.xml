@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/textView1"
-                    android:layout_column="0"
+                    android:layout_column="3"
                     android:layout_span="10"
                     android:text="Exp Month:" />
 
@@ -131,14 +131,14 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Year:"
                     android:id="@+id/textView"
-                    android:layout_column="18"
+                    android:layout_column="20"
                     android:layout_span="6" />
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/expYearField"
-                    android:layout_column="20"
+                    android:layout_column="26"
                     android:layout_span="5"
                     android:inputType="number"
                     android:text="2016"

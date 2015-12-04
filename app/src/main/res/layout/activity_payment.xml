@@ -32,47 +32,61 @@
                     android:text="Card Number:"
                     android:id="@+id/textView0"
                     android:layout_column="0"
-                    android:layout_span="12" />
+                    android:layout_span="9"
+                    android:layout_marginBottom="20dp" />
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/cardNumberField0"
-                    android:layout_column="13"
-                    android:layout_span="5"
+                    android:layout_column="10"
+                    android:layout_span="6"
                     android:text="4242"
                     android:inputType="number"
-                    android:textAlignment="center" />
+                    android:dig
+                    android:textAlignment="center"
+                    android:digits="4"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="5dp" />
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/cardNumberField1"
                     android:layout_column="16"
-                    android:layout_span="5"
+                    android:layout_span="6"
                     android:text="4242"
                     android:inputType="number"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:digits="4"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="5dp" />
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/cardNumberField2"
-                    android:layout_column="11"
-                    android:layout_span="5"
+                    android:layout_column="21"
+                    android:layout_span="6"
                     android:text="4242"
                     android:inputType="number"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:digits="4"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="5dp" />
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/cardNumberField3"
                     android:layout_column="11"
-                    android:layout_span="5"
+                    android:layout_span="6"
                     android:text="4242"
                     android:inputType="number"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:digits="4"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="5dp" />
 
             </TableRow>
 

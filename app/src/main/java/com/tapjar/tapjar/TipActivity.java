@@ -41,7 +41,6 @@ public class TipActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tip);
 
-        mTextView = (TextView) findViewById(R.id.textView_explanation);
 
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
@@ -53,11 +52,6 @@ public class TipActivity extends AppCompatActivity {
 
         }
 
-        if (!mNfcAdapter.isEnabled()) {
-            mTextView.setText("NFC is disabled.");
-        } else {
-            mTextView.setText(R.string.empty);
-        }
 
         handleIntent(getIntent());
     }
@@ -217,7 +211,6 @@ public class TipActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result != null) {
-                mTextView.setText("Read content: " + result);
                 //Launch payment here
                 String message = result;
                 Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);

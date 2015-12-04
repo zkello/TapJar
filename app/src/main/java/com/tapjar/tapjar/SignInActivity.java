@@ -32,7 +32,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void processResponse(String response) {
                 try {
-                    accountWrapper = JSONDecoder.getAcctFromResponse(response, "fadlfkj@travitz.net");
+                    accountWrapper = JSONDecoder.getAcctFromResponse(response, "example@travitz.net");
                     saveAccountNumber(accountWrapper.getId());
                 } catch (JSONException e) {
                     e.printStackTrace();

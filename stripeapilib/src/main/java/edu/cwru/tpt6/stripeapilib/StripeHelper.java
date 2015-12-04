@@ -71,7 +71,7 @@ public class StripeHelper {
 
     public void createTokenWithDefaultCard(HttpCallBack httpCallBack) {
         List<PostParameter> params = new LinkedList<>();
-
+        new Card("4242424242424242", 12, 2016, "123");
         params.add(new PostParameter("card[number]", "4242424242424242"));
         params.add(new PostParameter("card[exp_month]", "12" ));
         params.add(new PostParameter("card[exp_year]", "2016"));

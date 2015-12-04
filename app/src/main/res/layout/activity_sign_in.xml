@@ -25,6 +25,7 @@
         android:onClick="getAccountNumber"
         android:id="@+id/create_account_button"
         android:layout_below="@+id/editText"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onclick="tipIt"/>
 
 </RelativeLayout>

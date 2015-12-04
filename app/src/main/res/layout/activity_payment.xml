@@ -36,14 +36,13 @@
                     android:layout_marginBottom="20dp" />
 
                 <EditText
+                    android:id="@+id/cardNumberField0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cardNumberField0"
                     android:layout_column="10"
                     android:layout_span="6"
                     android:text="4242"
                     android:inputType="number"
-                    android:dig
                     android:textAlignment="center"
                     android:digits="4"
                     android:layout_gravity="bottom"
@@ -152,6 +151,46 @@
 
                 <Space
                     android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_span="34"
+                    android:layout_column="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="CVC:"
+                    android:id="@+id/textView5"
+                    android:layout_column="11"
+                    android:layout_span="7" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/cvcField"
+                    android:layout_column="18"
+                    android:layout_span="5"
+                    android:digits="3"
+                    android:text="123"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_marginBottom="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <Space
+                    android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:layout_span="34"
                     android:layout_column="1" />
@@ -197,11 +236,11 @@
                 android:layout_marginTop="5dp">
 
                 <TextView
+                    android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="$"
-                    android:id="@+id/textView4"
                     android:textSize="40dp"
                     android:layout_column="6"
                     android:layout_span="4"
@@ -209,11 +248,11 @@
                     android:layout_marginTop="25dp" />
 
                 <EditText
+                    android:id="@+id/tipDollarsField"
                     android:layout_width="wrap_content"
                     android:layout_height="100dp"
                     android:inputType="number"
                     android:ems="10"
-                    android:id="@+id/tipDollarsField"
                     android:layout_column="10"
                     android:layout_span="6"
                     android:digits="2"

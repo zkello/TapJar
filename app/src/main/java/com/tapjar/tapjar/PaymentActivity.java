@@ -53,58 +53,68 @@ public class PaymentActivity extends AppCompatActivity {
     public void tipIt(View view) {
         stripeInst = new StripeHelper();
         card = new Card("4242424242424242", 12, 2016, "123");
+
         stripeInst.createTokenWithCard(card, new HttpCallBack() {
             @Override
             public void processResponse(String response) {
-                token = null;
-                try {
-                    token = JSONDecoder.getTokenFromResponse(response, card);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                if (token != null)
-                {
-                    stripeInst.createChargeWithID(token, acctNum, 125, new HttpCallBack() {
-                        @Override
-                        public void processResponse(String response) {
-                            charge = null;
-                            try {
-                                charge = JSONDecoder.getChargeFromResponse(response, token, acctNum);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            if(charge != null)
-                            {
-                                Toast.makeText(
-                                        PaymentActivity.this,"CHARGE SUCCEEDED!",
-                                        Toast.LENGTH_LONG).show();
-                                        finish();
-                                Log.d("TapJar", "Charge went through");
-                            }
-                            else
-                            {
-                                Log.d("TapJar", "Charge");
-                            }
-                        }
-
-
-                        @Override
-                        public void processFailure(Exception e) {
-                            Log.d("TapJar", "Charge Post failed\n" + e.getMessage());
-                        }
-                    });
-                }
-                else
-                {
-                    Log.d("TapJar", "Decode Token failed");
-                }
+                handleTokenSuccessResponse(response);
             }
 
             @Override
             public void processFailure(Exception e) {
-
+                Log.d("TapJar", "Token Post failed with message: " + e.getMessage());
             }
         });
+    }
+
+    private void handleTokenSuccessResponse(String response)
+    {
+        token = null;
+        try {
+            token = JSONDecoder.getTokenFromResponse(response, card);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (token != null)
+        {
+            stripeInst.createChargeWithID(token, acctNum, 125, new HttpCallBack() {
+                @Override
+                public void processResponse(String response) {
+                    handleChargeSuccessResponse(response);
+                }
+
+
+                @Override
+                public void processFailure(Exception e) {
+                    Log.d("TapJar", "Charge Post failed\n" + e.getMessage());
+                }
+            });
+        }
+        else
+        {
+            Log.d("TapJar", "Decode Token failed");
+        }
+    }
+
+    private void handleChargeSuccessResponse(String response) {
+        charge = null;
+        try {
+            charge = JSONDecoder.getChargeFromResponse(response, token, acctNum);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(charge != null)
+        {
+            Toast.makeText(
+                    PaymentActivity.this,"CHARGE SUCCEEDED!",
+                    Toast.LENGTH_LONG).show();
+            Log.d("TapJar", "Charge went through");
+            finish();
+        }
+        else
+        {
+            Log.d("TapJar", "Charge");
+        }
     }
 }

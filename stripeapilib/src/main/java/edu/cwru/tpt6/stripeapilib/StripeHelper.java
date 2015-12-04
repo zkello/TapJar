@@ -26,7 +26,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class StripeHelper {
 
     private static final String credentialKey = "sk_test_JeEPsy1W0H1stdpnBE2Ezx6c";
-
+    public int test = 0;
     //Create a stripeHelper from the key you are given
     public StripeHelper() {
         setAuthenticator();

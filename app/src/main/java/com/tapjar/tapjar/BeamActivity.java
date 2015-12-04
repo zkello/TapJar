@@ -83,6 +83,7 @@ public class BeamActivity extends Activity implements CreateNdefMessageCallback 
         NdefMessage msg = (NdefMessage) rawMsgs[0];
         // record 0 contains the MIME type, record 1 is the AAR, if present
         textView.setText(new String(msg.getRecords()[0].getPayload()));
+        finish();
     }
 }
 

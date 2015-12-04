@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Create Account"
         android:onClick="getAccountNumber"
-        android:id="@+id/button"
+        android:id="@+id/create_account_button"
         android:layout_below="@+id/editText"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

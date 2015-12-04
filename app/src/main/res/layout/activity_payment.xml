@@ -44,9 +44,10 @@
                     android:text="4242"
                     android:inputType="number"
                     android:textAlignment="center"
-                    android:digits="4"
+                    android:digits="123456789"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="5dp" />
+                    android:layout_marginBottom="5dp"
+                    android:maxLength="4" />
 
                 <EditText
                     android:layout_width="wrap_content"
@@ -57,9 +58,10 @@
                     android:text="4242"
                     android:inputType="number"
                     android:textAlignment="center"
-                    android:digits="4"
+                    android:digits="1234567890"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="5dp" />
+                    android:layout_marginBottom="5dp"
+                    android:maxLength="4" />
 
                 <EditText
                     android:layout_width="wrap_content"
@@ -70,9 +72,10 @@
                     android:text="4242"
                     android:inputType="number"
                     android:textAlignment="center"
-                    android:digits="4"
+                    android:digits="1234567890"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="5dp" />
+                    android:layout_marginBottom="5dp"
+                    android:maxLength="4" />
 
                 <EditText
                     android:layout_width="wrap_content"
@@ -83,9 +86,10 @@
                     android:text="4242"
                     android:inputType="number"
                     android:textAlignment="center"
-                    android:digits="4"
+                    android:digits="1234567890"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="5dp" />
+                    android:layout_marginBottom="5dp"
+                    android:maxLength="4" />
 
             </TableRow>
 
@@ -95,7 +99,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="15dp"
+                    android:layout_height="10dp"
                     android:layout_span="32"
                     android:layout_column="1" />
             </TableRow>
@@ -122,7 +126,9 @@
                     android:text="12"
                     android:inputType="number"
                     android:layout_gravity="end"
-                    android:textAlignment="viewEnd" />
+                    android:textAlignment="viewEnd"
+                    android:digits="0123456789"
+                    android:maxLength="2" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -138,11 +144,13 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/expYearField"
                     android:layout_column="26"
-                    android:layout_span="5"
+                    android:layout_span="6"
                     android:inputType="number"
                     android:text="2016"
                     android:layout_gravity="end"
-                    android:textAlignment="viewEnd" />
+                    android:textAlignment="viewEnd"
+                    android:digits="1234567890"
+                    android:maxLength="4" />
             </TableRow>
 
             <TableRow android:layout_marginBottom="2dp"
@@ -151,7 +159,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="10dp"
                     android:layout_span="34"
                     android:layout_column="1" />
             </TableRow>
@@ -178,10 +186,11 @@
                     android:id="@+id/cvcField"
                     android:layout_column="18"
                     android:layout_span="5"
-                    android:digits="3"
+                    android:digits="0123456789"
                     android:text="123"
                     android:textAlignment="textEnd"
-                    android:layout_gravity="end"/>
+                    android:layout_gravity="end"
+                    android:maxLength="3" />
             </TableRow>
 
             <TableRow
@@ -191,7 +200,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="10dp"
                     android:layout_span="34"
                     android:layout_column="1" />
             </TableRow>
@@ -255,11 +264,13 @@
                     android:ems="10"
                     android:layout_column="10"
                     android:layout_span="6"
-                    android:digits="2"
+                    android:digits="1234567890"
                     android:text="1"
                     android:layout_gravity="end"
                     android:textAlignment="textEnd"
-                    android:textSize="40dp" />
+                    android:textSize="40dp"
+                    android:contextClickable="false"
+                    android:maxLength="2" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -281,11 +292,12 @@
                     android:id="@+id/tipCentsField"
                     android:layout_column="18"
                     android:layout_span="6"
-                    android:digits="2"
+                    android:digits="1234567890"
                     android:text="25"
                     android:layout_gravity="end"
                     android:textAlignment="textEnd"
-                    android:textSize="40dp" />
+                    android:textSize="40dp"
+                    android:maxLength="2" />
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
@@ -302,7 +314,7 @@
                     android:layout_column="1"
                     android:layout_span="32"
                     android:textSize="30dp"
-                    android:layout_marginTop="30dp" />
+                    android:layout_marginTop="0dp" />
             </TableRow>
         </TableLayout>
 

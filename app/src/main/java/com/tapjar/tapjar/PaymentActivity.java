@@ -50,7 +50,7 @@ public class PaymentActivity extends AppCompatActivity {
         }
     }
 
-    public void tipIt() {
+    public void tipIt(View view) {
         stripeInst = new StripeHelper();
         card = new Card("4242424242424242", 12, 2016, "123");
         stripeInst.createTokenWithCard(card, new HttpCallBack() {
@@ -65,7 +65,7 @@ public class PaymentActivity extends AppCompatActivity {
 
                 if (token != null)
                 {
-                    stripeInst.createChargeWithID(token, acctNum, 100, new HttpCallBack() {
+                    stripeInst.createChargeWithID(token, acctNum, 125, new HttpCallBack() {
                         @Override
                         public void processResponse(String response) {
                             charge = null;

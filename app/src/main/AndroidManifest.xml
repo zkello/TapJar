@@ -32,7 +32,8 @@
             android:label="@string/title_activity_beam" />
         <activity
             android:name=".TipActivity"
-            android:label="@string/title_activity_tip">
+            android:label="@string/title_activity_tip"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 

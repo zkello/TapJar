@@ -3,14 +3,10 @@ package com.tapjar.tapjar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
-
 import com.stripe.android.model.Card;
-
 import org.json.JSONException;
-
-import java.sql.Wrapper;
-
 import edu.cwru.tpt6.stripeapilib.ChargeWrapper;
 import edu.cwru.tpt6.stripeapilib.HttpCallBack;
 import edu.cwru.tpt6.stripeapilib.JSONDecoder;
@@ -40,9 +36,7 @@ public class PaymentActivity extends AppCompatActivity {
             acctNum = extras.getString(EXTRA_MESSAGE);
 
             if(acctNum != null && !acctNum.isEmpty()) {
-                Toast.makeText(
-                        this, "This is the employee Id that was given: " + acctNum,
-                        Toast.LENGTH_LONG).show();
+                Log.d("TapJar", "This is the employee Id that was given: " + acctNum);
             }
             else {
                 Toast.makeText(this, "Account number is empty or null", Toast.LENGTH_LONG).show();
@@ -57,7 +51,7 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
 
-    public void tipIt() {
+    public void tipIt(View view) {
         stripeInst = new StripeHelper();
         card = new Card("4242424242424242", 12, 2016, "123");
         stripeInst.createTokenWithCard(card, new HttpCallBack() {
@@ -86,7 +80,7 @@ public class PaymentActivity extends AppCompatActivity {
                                 Toast.makeText(
                                         PaymentActivity.this,"CHARGE SUCCEED! :D",
                                         Toast.LENGTH_LONG).show();
-
+                                        finish();
                                 Log.d("TapJar", "Charge went through");
                             }
                             else

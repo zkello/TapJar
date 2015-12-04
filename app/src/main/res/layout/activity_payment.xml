@@ -244,6 +244,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TIP IT!"
+                    android:onClick="tipIt"
                     android:id="@+id/button"
                     android:layout_column="1"
                     android:layout_span="32"

@@ -1,34 +1,34 @@
 
 package com.tapjar.tapjar;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
-import android.nfc.NfcAdapter.CreateNdefMessageCallback;
+import android.nfc.NfcAdapter.*;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 import static android.nfc.NdefRecord.createMime;
 
-
-public class BeamActivity extends Activity implements CreateNdefMessageCallback, NfcAdapter.OnNdefPushCompleteCallback {
+public class BeamActivity extends AppCompatActivity implements CreateNdefMessageCallback, OnNdefPushCompleteCallback {
     NfcAdapter mNfcAdapter;
     TextView textView;
+    Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beam);
-        TextView textView = (TextView) findViewById(R.id.textView);
+        mContext = this;
         // Check for available NFC Adapter
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mNfcAdapter == null) {
             Toast.makeText(this, "NFC is not available", Toast.LENGTH_LONG).show();
-            finish();
             return;
         }
         // Register callback
@@ -90,5 +90,6 @@ public class BeamActivity extends Activity implements CreateNdefMessageCallback,
     public void onNdefPushComplete(NfcEvent event) {
         finish();
     }
+
 }
 

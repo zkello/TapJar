@@ -26,4 +26,5 @@
         android:id="@+id/create_account_button"
         android:layout_below="@+id/editText"
         android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

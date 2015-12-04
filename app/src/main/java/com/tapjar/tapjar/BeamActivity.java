@@ -15,7 +15,7 @@ import android.widget.Toast;
 import static android.nfc.NdefRecord.createMime;
 
 
-public class BeamActivity extends Activity implements CreateNdefMessageCallback {
+public class BeamActivity extends Activity implements CreateNdefMessageCallback, NfcAdapter.OnNdefPushCompleteCallback {
     NfcAdapter mNfcAdapter;
     TextView textView;
 
@@ -33,6 +33,7 @@ public class BeamActivity extends Activity implements CreateNdefMessageCallback 
         }
         // Register callback
         mNfcAdapter.setNdefPushMessageCallback(this, this);
+        mNfcAdapter.setOnNdefPushCompleteCallback(this, this);
     }
 
     @Override
@@ -83,6 +84,11 @@ public class BeamActivity extends Activity implements CreateNdefMessageCallback 
         NdefMessage msg = (NdefMessage) rawMsgs[0];
         // record 0 contains the MIME type, record 1 is the AAR, if present
         textView.setText(new String(msg.getRecords()[0].getPayload()));
+    }
+
+    @Override
+    public void onNdefPushComplete(NfcEvent event) {
+        finish();
     }
 }
 

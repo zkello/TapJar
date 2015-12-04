@@ -56,10 +56,8 @@ public class PaymentActivity extends AppCompatActivity {
         }
     }
 
-
     public void tipIt() {
         stripeInst = new StripeHelper();
-        card = new Card("4242424242424242", 12, 2016, "123");
         stripeInst.createTokenWithCard(card, new HttpCallBack() {
             @Override
             public void processResponse(String response) {
@@ -84,7 +82,7 @@ public class PaymentActivity extends AppCompatActivity {
                             if(charge != null)
                             {
                                 Toast.makeText(
-                                        PaymentActivity.this,"CHARGE SUCCEED! :D",
+                                        PaymentActivity.this,"CHARGE SUCCEEDED!",
                                         Toast.LENGTH_LONG).show();
 
                                 Log.d("TapJar", "Charge went through");
